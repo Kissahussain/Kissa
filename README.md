@@ -1,3 +1,3 @@
 # Kissa
-Currently inprogress
+Currently in progress
 Portfolio 
