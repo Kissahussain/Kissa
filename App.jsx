@@ -1,7 +1,9 @@
 const { useEffect } = React;
 
 const caseStudies = [
-  { num: '01', tag: 'Branding · 2024',      title: 'Case Study Title', desc: 'A brief description of the project, the challenge faced, and the outcome achieved. Replace with your own work.', delay: '0s' },
+  { num: '01', tag: 'Branding · 2024',      title: 'EcoEats', desc: 'Designing a Sustainable Solution to Reduce Food Waste', link: 'https://www.figma.com/proto/UyhJAAvEywqWNcCjwXBJ5O/EcoEats?node-id=230-2&t=soU3DryPxSAsx5xl-1&scaling=min-zoom&content-scaling=fixed&page-id=144%3A5', delay: '0s' },
+  
+  
   { num: '02', tag: 'UI Design · 2024',     title: 'Case Study Title', desc: 'A brief description of the project, the challenge faced, and the outcome achieved. Replace with your own work.', delay: '0.1s' },
   { num: '03', tag: 'Illustration · 2023',  title: 'Case Study Title', desc: 'A brief description of the project, the challenge faced, and the outcome achieved. Replace with your own work.', delay: '0.2s' },
   { num: '04', tag: 'Art Direction · 2023', title: 'Case Study Title', desc: 'A brief description of the project, the challenge faced, and the outcome achieved. Replace with your own work.', delay: '0.3s' },
