@@ -68,22 +68,14 @@ function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-copy">
-        <p className="eyebrow">Creative Portfolio</p>
         <h1>Design, art, and product work for modern brands.</h1>
         <p className="hero-intro">
           I build thoughtful digital experiences using React and polished visual systems. Explore case studies,
           prototypes, and my latest work.
         </p>
         <div className="hero-actions">
-          <a className="button" href="#case-studies">View Case Studies</a>
+          <a className="button" href="#case-studies">Case Studies</a>
           <a className="button button-outline" href="#about">About Me</a>
-        </div>
-      </div>
-      <div className="hero-panel">
-        <div className="panel-card">
-          <span className="panel-label">Featured Prototype</span>
-          <h2>EcoEats</h2>
-          <p>Interactive Figma prototype embedded inside your case study page.</p>
         </div>
       </div>
     </section>
