@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 const navLinks = [
   { label: 'About Me', href: '#about' },
@@ -81,32 +81,69 @@ function Hero() {
 function Experience() {
   const items = useMemo(
     () => [
-      { role: 'Product Designer', company: 'EcoEats', period: '2024 – Present', description: 'Led end-to-end product design for a sustainable food waste app, from user research to high-fidelity prototypes.' },
-      { role: 'Visual Designer', company: 'Creative Studio', period: '2022 – 2024', description: 'Created visual systems, brand identities, and motion graphics for clients across lifestyle and tech.' },
-      { role: 'Freelance Designer', company: 'Independent', period: '2020 – 2022', description: 'Delivered UI/UX and branding projects for early-stage startups and local businesses.' }
+      {
+        role: 'Product Designer',
+        company: 'EcoEats',
+        period: 'JAN 2024 – PRESENT',
+        bullets: [
+          'Led end-to-end product design for a sustainable food waste app, from discovery to launch.',
+          'Conducted user research and usability testing to inform design decisions.',
+          'Built high-fidelity prototypes and design systems used across the product team.'
+        ]
+      },
+      {
+        role: 'Visual Designer',
+        company: 'Creative Studio',
+        period: 'JUN 2022 – DEC 2023',
+        bullets: [
+          'Created visual systems and brand identities for clients across lifestyle and tech.',
+          'Designed motion graphics and editorial layouts for digital and print campaigns.',
+          'Collaborated with developers to ensure pixel-perfect implementation.'
+        ]
+      },
+      {
+        role: 'Freelance Designer',
+        company: 'Independent',
+        period: 'MAR 2020 – MAY 2022',
+        bullets: [
+          'Delivered UI/UX and branding projects for early-stage startups and local businesses.',
+          'Managed client relationships from brief to final delivery.',
+          'Designed responsive web interfaces and marketing materials.'
+        ]
+      }
     ],
     []
   );
+
+  const [active, setActive] = useState(0);
 
   return (
     <section id="experience" className="section-block">
       <p className="section-label">Experience</p>
       <h2>Work History</h2>
-      <div className="experience-grid">
-        {items.map(item => (
-          <article key={`${item.role}-${item.company}`} className="card card-flip">
-            <div className="card-inner">
-              <div className="card-front">
-                <h3>{item.role}</h3>
-                <p className="muted">{item.company}</p>
-                <p className="muted">{item.period}</p>
-              </div>
-              <div className="card-back">
-                <p>{item.description}</p>
-              </div>
-            </div>
-          </article>
-        ))}
+      <div className="experience-layout">
+        <ul className="experience-sidebar">
+          {items.map((item, i) => (
+            <li
+              key={item.company}
+              className={`experience-tab${i === active ? ' active' : ''}`}
+              onClick={() => setActive(i)}
+            >
+              {item.company}
+            </li>
+          ))}
+        </ul>
+        <div className="experience-detail">
+          <h3 className="experience-title">
+            {items[active].role} @ <span className="experience-company">{items[active].company}</span>
+          </h3>
+          <p className="experience-period">{items[active].period}</p>
+          <ul className="experience-bullets">
+            {items[active].bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -166,9 +203,9 @@ function App() {
       <Nav />
       <main>
         <Hero />
+        <About />
         <Experience />
         <CaseStudies />
-        <About />
       </main>
       <Footer />
     </div>

@@ -217,15 +217,86 @@ textarea {
   margin-bottom: 42px;
 }
 
-.experience-grid,
 .case-grid,
 .about-highlights {
   display: grid;
   gap: 18px;
 }
 
-.experience-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.experience-layout {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0;
+}
+
+.experience-sidebar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid #e5e6ec;
+}
+
+.experience-tab {
+  padding: 12px 20px;
+  cursor: pointer;
+  color: #747485;
+  font-weight: 500;
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.experience-tab:hover {
+  color: #111;
+}
+
+.experience-tab.active {
+  color: #111;
+  border-left-color: #ff0000;
+}
+
+.experience-detail {
+  padding: 0 0 0 36px;
+}
+
+.experience-title {
+  font-size: 1.25rem;
+  margin: 0 0 8px;
+}
+
+.experience-company {
+  color: #ff0000;
+}
+
+.experience-period {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  color: #747485;
+  margin: 0 0 24px;
+}
+
+.experience-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.experience-bullets li {
+  display: flex;
+  gap: 12px;
+  color: #4f4f5d;
+  line-height: 1.6;
+}
+
+.experience-bullets li::before {
+  content: '▸';
+  color: #ff0000;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .case-grid {
