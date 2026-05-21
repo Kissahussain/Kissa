@@ -82,33 +82,31 @@ function Experience() {
   const items = useMemo(
     () => [
       {
-        role: 'Product Designer',
-        company: 'EcoEats',
-        period: 'JAN 2024 – PRESENT',
+        role: 'Founder',
+        company: 'East & West',
+        period: 'OCT 2025 – PRESENTT',
         bullets: [
-          'Led end-to-end product design for a sustainable food waste app, from discovery to launch.',
-          'Conducted user research and usability testing to inform design decisions.',
-          'Built high-fidelity prototypes and design systems used across the product team.'
+          'Launched and scaled a personal brand as an oil painter, designing multi-medium content using Canva, Adobe Creative Suite, and CapCut to grow an engaged social media audience.',
+          'Secured two commission pieces within the first three months of launch, demonstrating strong client acquisition and brand credibility.',
+          'Curated a small-group art workshop, teaching techniques including stamp work to foster creativity and community.t campaigns.',
         ]
       },
       {
-        role: 'Visual Designer',
-        company: 'Creative Studio',
-        period: 'JUN 2022 – DEC 2023',
+        role: 'Technical Specialist',
+        company: 'Apple',
+        period: 'AUG 2024 – PRESENT',
         bullets: [
-          'Created visual systems and brand identities for clients across lifestyle and tech.',
-          'Designed motion graphics and editorial layouts for digital and print campaigns.',
-          'Collaborated with developers to ensure pixel-perfect implementation.'
+          'Guided customers through device troubleshooting using  knowledge of Apples UI and ecosystem.',
+          'Driving a significant improvement in customer experience, raising our Net Promoter Score (NPS) from 56 to 100  within a single quarter.',
         ]
       },
       {
-        role: 'Freelance Designer',
-        company: 'Independent',
-        period: 'MAR 2020 – MAY 2022',
+        role: 'Social Media Manager',
+        company: 'Texas State University',
+        period: 'AUG 2022 – JAN 2023',
         bullets: [
-          'Delivered UI/UX and branding projects for early-stage startups and local businesses.',
-          'Managed client relationships from brief to final delivery.',
-          'Designed responsive web interfaces and marketing materials.'
+          'Designed social and print content using Canva and Adobe Creative Suite.',
+          'Drove significant follower growth in a single semester and boosting student event attendance for the Muslim Student Association.',
         ]
       }
     ],
