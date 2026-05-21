@@ -81,9 +81,9 @@ function Hero() {
 function Experience() {
   const items = useMemo(
     () => [
-      { role: 'Product Designer', company: 'EcoEats', period: '2024 – Present' },
-      { role: 'Visual Designer', company: 'Creative Studio', period: '2022 – 2024' },
-      { role: 'Freelance Designer', company: 'Independent', period: '2020 – 2022' }
+      { role: 'Product Designer', company: 'EcoEats', period: '2024 – Present', description: 'Led end-to-end product design for a sustainable food waste app, from user research to high-fidelity prototypes.' },
+      { role: 'Visual Designer', company: 'Creative Studio', period: '2022 – 2024', description: 'Created visual systems, brand identities, and motion graphics for clients across lifestyle and tech.' },
+      { role: 'Freelance Designer', company: 'Independent', period: '2020 – 2022', description: 'Delivered UI/UX and branding projects for early-stage startups and local businesses.' }
     ],
     []
   );
@@ -94,10 +94,17 @@ function Experience() {
       <h2>Work History</h2>
       <div className="experience-grid">
         {items.map(item => (
-          <article key={`${item.role}-${item.company}`} className="card">
-            <h3>{item.role}</h3>
-            <p className="muted">{item.company}</p>
-            <p className="muted">{item.period}</p>
+          <article key={`${item.role}-${item.company}`} className="card card-flip">
+            <div className="card-inner">
+              <div className="card-front">
+                <h3>{item.role}</h3>
+                <p className="muted">{item.company}</p>
+                <p className="muted">{item.period}</p>
+              </div>
+              <div className="card-back">
+                <p>{item.description}</p>
+              </div>
+            </div>
           </article>
         ))}
       </div>
@@ -139,16 +146,6 @@ function About() {
         <a className="button button-outline" href="https://eastndwest.com" target="_blank" rel="noreferrer">
           Visit Art Website
         </a>
-      </div>
-      <div className="about-highlights">
-        <div className="highlight-card">
-          <strong>Strategy</strong>
-          <p>Design systems, product flows, and launch-ready experiences.</p>
-        </div>
-        <div className="highlight-card">
-          <strong>Creative</strong>
-          <p>Brand direction, visual storytelling, and polished UI design.</p>
-        </div>
       </div>
     </section>
   );
