@@ -39,7 +39,7 @@ function Nav() {
   return (
     <header className="topbar">
       <div className="brand">
-        <span>Kissa Hussain</span>
+        <span>KH</span>
       </div>
       <nav className="nav-links">
         {navLinks.map(link => (
@@ -68,11 +68,7 @@ function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-copy">
-        <h1>Design, art, and product work for modern brands.</h1>
-        <p className="hero-intro">
-          I build thoughtful digital experiences using React and polished visual systems. Explore case studies,
-          prototypes, and my latest work.
-        </p>
+        <h1>Hi, I'm Kissa! A Product designer and artist in Texas.</h1>
         <div className="hero-actions">
           <a className="button" href="#case-studies">Case Studies</a>
           <a className="button button-outline" href="#about">About Me</a>
@@ -94,7 +90,7 @@ function Experience() {
 
   return (
     <section id="experience" className="section-block">
-      <p className="section-eyebrow">Experience</p>
+      <p className="section-label">Experience</p>
       <h2>Work History</h2>
       <div className="experience-grid">
         {items.map(item => (
@@ -112,7 +108,7 @@ function Experience() {
 function CaseStudies() {
   return (
     <section id="case-studies" className="section-block">
-      <p className="section-eyebrow">Selected Work</p>
+      <p className="section-label">Selected Work</p>
       <h2>Case Studies</h2>
       <div className="case-grid">
         {caseStudies.map(study => (
@@ -134,7 +130,7 @@ function About() {
   return (
     <section id="about" className="section-block about-section">
       <div>
-        <p className="section-eyebrow">About Me</p>
+        <p className="section-label">About Me</p>
         <h2>I create distinctive digital experiences.</h2>
         <p>
           I combine design thinking, interaction, and product storytelling to help brands stand out online. My work
