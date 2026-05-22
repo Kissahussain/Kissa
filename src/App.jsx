@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { MdEmail } from 'react-icons/md';
 import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
 
@@ -18,24 +18,25 @@ const socials = [
 
 const caseStudies = [
   {
-  
-  title: 'EcoEats',
-  role: 'Design Lead',
-  description: 'Led design on a deployed team app that helps households track expiring groceries and cut food waste.',
-  liveUrl: 'https://your-deployed-app-url.com',
-  figmaUrl: 'https://www.figma.com/proto/UyhJAAvEywqWNcCjwXBJ5O/EcoEats?node-id=230-2',
+    title: 'EcoEats',
+    role: 'Design Lead',
+    description: 'Led design on a deployed team app that helps households track expiring groceries and cut food waste.',
+    url: 'https://www.figma.com/proto/UyhJAAvEywqWNcCjwXBJ5O/EcoEats?node-id=230-2',
+    accent: '#2D9B5A',
   },
   {
     title: 'Creative System',
     role: 'UI Design · 2024',
     description: 'Building a visual system that scales across editorial, web, and motion projects.',
-    url: '#'
+    url: '#',
+    accent: '#FB3539',
   },
   {
     title: 'Art Direction',
     role: 'Illustration · 2023',
     description: 'Developing concept-driven art direction for lifestyle and cultural brands.',
-    url: '#'
+    url: '#',
+    accent: '#0145c3',
   }
 ];
 
@@ -72,10 +73,9 @@ function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-copy">
-        <h1>Hi, I'm <span className="name-highlight">Kissa!</span> A Product designer and artist in Texas.</h1>
+        <h1>Hi, I'm <span className="name-highlight">Kissa!</span> A product designer and artist in Texas.</h1>
         <div className="hero-actions">
           <a className="button" href="#case-studies">Case Studies</a>
-          <a className="button button-outline" href="#about">About Me</a>
         </div>
       </div>
     </section>
@@ -151,19 +151,50 @@ function Experience() {
 }
 
 function CaseStudies() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // Auto-cycle through cards every 3s unless the user is interacting
+  React.useEffect(() => {
+    if (paused) return;
+    const t = setTimeout(() => setActive(a => (a + 1) % caseStudies.length), 2000);
+    return () => clearTimeout(t);
+  }, [active, paused]);
+
   return (
     <section id="case-studies" className="section-block">
       <p className="section-label">Projects</p>
-      <div className="case-grid">
-        {caseStudies.map(study => (
-          <a key={study.title} href={study.url} className="case-card" target="_blank" rel="noreferrer">
-            <div>
-              <p className="muted">{study.role}</p>
-              <h3>{study.title}</h3>
-              <p>{study.description}</p>
+      <div
+        className="case-stack"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {caseStudies.map((study, i) => {
+          const n = caseStudies.length;
+          const offset = ((i - active + n) % n); // circular: 0=active, 1=next-right, n-1=prev-left
+          const cls = offset === 0 ? 'is-active' : offset === 1 ? 'is-next' : 'is-prev';
+          return (
+            <div
+              key={study.title}
+              className={`case-slide ${cls}`}
+              onClick={() => { setPaused(true); setActive(i); }}
+            >
+              <div className="case-slide-logo" style={{ background: study.accent }}>
+                <span>{study.title[0]}</span>
+              </div>
+              <div className="case-slide-text">
+                <p className="muted">{study.role}</p>
+                <h3>{study.title}</h3>
+                <p>{study.description}</p>
+                <a href={study.url} className="case-link" target="_blank" rel="noreferrer">View project →</a>
+              </div>
             </div>
-            <span className="case-link">View project</span>
-          </a>
+          );
+        })}
+      </div>
+      <div className="case-dots">
+        {caseStudies.map((_, i) => (
+          <button key={i} className={`case-dot${i === active ? ' active' : ''}`} onClick={() => setActive(i)} aria-label={`Project ${i + 1}`} />
         ))}
       </div>
     </section>
@@ -179,7 +210,7 @@ function About() {
         <p>
           I'm currently working on a new case study while I work part-time at Apple as a Technical Specialist, where I
           get to help people with common problems they have on their iPhones. It's the most inspirational place to work
-          if you're a product designer, you understand how users interact with their devices.
+          if you're a product designer,you understand how users interact with their devices.
         </p>
         <p>Here are some tech and tools I'm great at:</p>
         <ul className="about-tools">
