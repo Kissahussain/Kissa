@@ -12,8 +12,8 @@ const navLinks = [
 const socials = [
   { label: 'Email', href: 'mailto:hello@example.com', icon: <MdEmail /> },
   { label: 'GitHub', href: 'https://github.com/Kissahussain', icon: <FaGithub /> },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/username', icon: <FaLinkedin /> },
-  { label: 'Medium', href: 'https://medium.com/@username', icon: <FaMedium /> }
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/kissa-hussain', icon: <FaLinkedin /> },
+  { label: 'Medium', href: 'https://medium.com/@kissahussain', icon: <FaMedium /> }
 ];
 
 const caseStudies = [
@@ -72,7 +72,7 @@ function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-copy">
-        <h1>Hi, I'm Kissa! A Product designer and artist in Texas.</h1>
+        <h1>Hi, I'm <span className="name-highlight">Kissa!</span> A Product designer and artist in Texas.</h1>
         <div className="hero-actions">
           <a className="button" href="#case-studies">Case Studies</a>
           <a className="button button-outline" href="#about">About Me</a>
@@ -122,7 +122,6 @@ function Experience() {
   return (
     <section id="experience" className="section-block">
       <p className="section-label">Experience</p>
-      <h2>Work History</h2>
       <div className="experience-layout">
         <ul className="experience-sidebar">
           {items.map((item, i) => (
@@ -154,8 +153,7 @@ function Experience() {
 function CaseStudies() {
   return (
     <section id="case-studies" className="section-block">
-      <p className="section-label">Selected Work</p>
-      <h2>Case Studies</h2>
+      <p className="section-label">Projects</p>
       <div className="case-grid">
         {caseStudies.map(study => (
           <a key={study.title} href={study.url} className="case-card" target="_blank" rel="noreferrer">
@@ -177,14 +175,23 @@ function About() {
     <section id="about" className="section-block about-section">
       <div>
         <p className="section-label">About Me</p>
-        <h2>I create distinctive digital experiences.</h2>
+        <h1></h1>
         <p>
-          I combine design thinking, interaction, and product storytelling to help brands stand out online. My work
-          spans branding, UX, responsive web design, and interactive prototypes.
+          I'm currently working on a new case study while I work part-time at Apple as a Technical Specialist, where I
+          get to help people with common problems they have on their iPhones. It's the most inspirational place to work
+          if you're a product designer, you understand how users interact with their devices.
         </p>
-        <a className="button button-outline" href="https://eastndwest.com" target="_blank" rel="noreferrer">
-          Visit Art Website
-        </a>
+        <p>Here are some tech and tools I'm great at:</p>
+        <ul className="about-tools">
+          <li>React.js</li>
+          <li>Figma</li>
+           <li>Adobe Illustrator</li>
+          <li>Instagram and TikTok</li>
+        </ul>
+        <p>
+          In my free time, I'm either bouldering, inventing new recipes, or working on my business. Oh, I make content too.
+        </p>
+      
       </div>
     </section>
   );
@@ -194,7 +201,7 @@ function Footer() {
   return (
     <footer className="footer">
       <p>© 2026 Kissa Hussain</p>
-      <p>Built with React + Vite</p>
+      <p>Designed and handcoded in Houston, TX with ❤️</p>
     </footer>
   );
 }

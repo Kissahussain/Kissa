@@ -1,13 +1,16 @@
+
 :root {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
   color: #f5f0e8;
 }
 
+/* ── Makes padding/border included in element width/height ── */
 * {
   box-sizing: border-box;
 }
 
+/* ── Page background image and overall page spacing ── */
 body {
   margin: 0;
   min-height: 100vh;
@@ -15,23 +18,27 @@ body {
   padding: 5vh;
 }
 
+/* ── Removes underline and inherits text color on all links ── */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* ── Makes form elements use the same font as the rest of the page ── */
 button,
 input,
 textarea {
   font: inherit;
 }
 
+/* ── Centers and constrains the max width of the whole page ── */
 .page-wrapper {
   max-width: 1100px;
   margin: 0 auto;
   padding: 28px 24px 48px;
 }
 
+/* ── Top navigation bar layout (logo + links + socials in a row) ── */
 .topbar {
   display: flex;
   flex-wrap: wrap;
@@ -42,11 +49,14 @@ textarea {
   color:#fefef9;
 }
 
+/* ── "KH" logo text style ── */
 .brand {
   font-weight: 700;
   letter-spacing: -0.03em;
+  font-size: 24px;
 }
 
+/* ── Horizontal layout for nav links and social icons ── */
 .nav-links,
 .socials {
   display: flex;
@@ -54,86 +64,124 @@ textarea {
   gap: 14px;
 }
 
+/* ── Color and size of nav and social link text ── */
 .nav-links a,
 .socials a {
   color: #fefef9;
-  font-size: 12px;
+  font-size: 13px;
   align-items: left;
 }
 
+/* ── Social icon alignment (centers each icon inside its link) ── */
 .socials a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
+/* ── Hero section: two-column layout (text left, panel right) ── */
 .hero-section {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 26px;
   align-items: center;
   margin-bottom: 48px;
-  color:#fefef9;
+  color:#F2CCB4;
 }
 
+/* ── Limits the width of the hero headline text ── */
 .hero-copy {
   max-width: 620px;
 }
 
+/* Experience*/
 .section-label {
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  font-size: 0.78rem;
+  font-size: 15px;
   color: #fefef9;
   margin-bottom: 14px;
 }
 
-.hero-section h1,
+/* ── Section headings (Experience, Case Studies) ── */
 .section-block h2 {
-  font-size: clamp(2.3rem, 2.7vw, 3.6rem);
-  line-height: 1.02;
+  /*'font-size: clamp(2.3rem, 2.7vw, 3.6rem);*/
+  line-height: 1.3;
   padding: 10vh;
 }
 
+/* ── Hero h1 — matches About Me left alignment, no extra padding ── */
+.hero-section h1 {
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  line-height: 1.2;
+  margin: 60px 0 60px 0px;
+  padding: 0;
+}
+
+/* ── "Kissa!" word animation in the hero heading ── */
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 0.7; transform: translateY(-6px); }
+}
+
+.name-highlight {
+  display: inline-block;
+  animation: shimmer 3s ease-in-out infinite;
+  color: #f7f1f1;
+}
+
+/* ── Body text color for intro, about, and card paragraphs ── */
 .hero-intro,
 .about-section p,
 .card p,
 .case-card p,
 .panel-card p {
   color: #fefef9;
+  font-size: 15px;
 }
 
+/* ── Layout and spacing for the hero CTA buttons ── */
 .hero-actions {
   display: flex;
-  gap: 14px;
+  gap: 24px;
   flex-wrap: wrap;
-  margin: -10vh 5vh 20vh 10vh;
+  margin: 0;
 }
 
+/* ── Shared shape and padding for both button styles ── */
 .button,
 .button-outline {
   padding: 14px 22px;
   border-radius: 999px;
   font-weight: 600;
-  
 }
 
+/* ── Filled button (e.g. "Case Studies") — change background color here ── */
 .button {
-  background: #f10e0e;
-  color: #fff;
+  background: #fcfafb;
+  color: #030202;
 }
 
+/* ── Outlined button (e.g. "About Me") — change border/background here ── */
 .button-outline {
-  border: 1px solid #111;
-  color: #111;
+  color: #030202;
   background: #fff;
 }
 
+/* ── Space above and below the button in the About section — adjust margin-top/bottom ── */
+.about-section .button-outline {
+  display: inline-block;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+
+/* ── Centers the hero panel card on the right side ── */
 .hero-panel {
   display: grid;
   place-items: center;
 }
 
+/* ── White gradient card used in hero panel ── */
 .panel-card {
   background: linear-gradient(180deg, #fff 0%, #eef1f8 100%);
   border: 1px solid #e7e8ed;
@@ -143,13 +191,15 @@ textarea {
   min-height: 260px;
 }
 
+/* ── Small label text inside the panel card ── */
 .panel-label {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: #fefef9;
+  color: #fbfbf4;
 }
 
+/* ── Shared white card style used across the page ── */
 .card,
 .case-card,
 .highlight-card {
@@ -159,6 +209,7 @@ textarea {
   padding: 24px;
 }
 
+/* ── Flip card container — sets up 3D perspective ── */
 .card-flip {
   position: relative;
   min-height: 220px;
@@ -168,6 +219,7 @@ textarea {
   padding: 0;
 }
 
+/* ── Inner wrapper that actually rotates on hover ── */
 .card-inner {
   position: relative;
   width: 100%;
@@ -177,10 +229,12 @@ textarea {
   transition: transform 0.6s ease;
 }
 
+/* ── Triggers the flip animation when hovering the card ── */
 .card-flip:hover .card-inner {
   transform: rotateY(180deg);
 }
 
+/* ── Shared styles for both sides of the flip card ── */
 .card-front,
 .card-back {
   position: absolute;
@@ -191,11 +245,13 @@ textarea {
   -webkit-backface-visibility: hidden;
 }
 
+/* ── Front face of the flip card ── */
 .card-front {
   background: #fff;
   border: 1px solid #e5e6ec;
 }
 
+/* ── Back face of the flip card — change background color here ── */
 .card-back {
   background: #ff0000;
   color: #fff;
@@ -204,37 +260,49 @@ textarea {
   transform: rotateY(180deg);
 }
 
+/* ── Text inside the back of the flip card ── */
 .card-back p {
   margin: 0;
   font-size: 1rem;
   line-height: 1.6;
 }
 
+/* ── Bottom margin between page sections ── */
 .section-block {
   margin-bottom: 42px;
 }
 
+/* ── Experience section card — frosted glass look ── */
 #experience {
+  margin-top: 60px;
+  max-width: 65%; /* ── Shrink from the right so text stays on the dark readable side ── */
+  width: 100%;
+  overflow: hidden; /* ── Prevents any child from breaking out of the box ── */
   background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 28px;
   padding: 36px;
+  box-sizing: border-box;
 }
 
+/* ── Grid layout shared by case study grid and about highlights ── */
 .case-grid,
 .about-highlights {
   display: grid;
   gap: 18px;
 }
 
+/* ── Two-column layout: company list on left, details on right ── */
 .experience-layout {
   display: grid;
   grid-template-columns: 160px 1fr;
   gap: 0;
+  min-width: 0; /* ── Allows grid to shrink below content size ── */
 }
 
+/* ── Left sidebar list of company names ── */
 .experience-sidebar {
   list-style: none;
   margin: 0;
@@ -242,6 +310,7 @@ textarea {
   border-left: 2px solid #e5e6ec;
 }
 
+/* ── Individual company tab in the sidebar ── */
 .experience-tab {
   padding: 12px 20px;
   cursor: pointer;
@@ -252,36 +321,45 @@ textarea {
   transition: color 0.2s, border-color 0.2s;
 }
 
+/* ── Hover state for company tab ── */
 .experience-tab:hover {
-  color: #111;
+  color: #2f0000;
 }
 
+/* ── Active/selected company tab — change accent color here ── */
 .experience-tab.active {
-  color: #111;
-  border-left-color: #ff0000;
+  color: #fdf08e;
+  border-left-color: #F2CCB4;
 }
 
+/* ── Right side padding for the job detail panel ── */
 .experience-detail {
   padding: 0 0 0 36px;
+  min-width: 0; /* ── Allows this grid cell to shrink so text wraps instead of overflowing ── */
+  overflow-wrap: break-word;
 }
 
+/* ── "Role @ Company" heading size ── */
 .experience-title {
   font-size: 1.25rem;
   margin: 0 0 8px;
 }
 
+/* ── Company name accent color in the job title ── */
 .experience-company {
-  color: #ff0000;
+  color: #fdf08e;
 }
 
+/* ── Date range text style (e.g. "AUG 2024 – PRESENT") ── */
 .experience-period {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.8rem;
-  color: #fefef9;
+  color: #fdf08e;
   margin: 0 0 24px;
 }
 
+/* ── Bullet point list layout for job responsibilities ── */
 .experience-bullets {
   list-style: none;
   margin: 0;
@@ -291,24 +369,28 @@ textarea {
   gap: 16px;
 }
 
+/* ── Individual bullet point text ── */
 .experience-bullets li {
   display: flex;
   gap: 12px;
-  color: #fefef9;
+  color: #fcfaf9;
   line-height: 1.6;
 }
 
+/* ── Arrow symbol before each bullet — change color here ── */
 .experience-bullets li::before {
   content: '▸';
-  color: #ff0000;
+  color: #F2CCB4;
   flex-shrink: 0;
   margin-top: 2px;
 }
 
+/* ── Responsive grid for case study cards ── */
 .case-grid {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+/* ── Individual case study card layout ── */
 .case-card {
   display: flex;
   flex-direction: column;
@@ -317,11 +399,13 @@ textarea {
   min-height: 210px;
 }
 
+/* ── "View project" link color at the bottom of each case card ── */
 .case-link {
   font-weight: 700;
   color: #b00a0a;
 }
 
+/* ── About section: two-column layout (text left, highlights right) ── */
 .about-section {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -329,27 +413,50 @@ textarea {
   align-items: start;
 }
 
+/* ── Single-column stack for highlight cards ── */
 .about-highlights {
   grid-template-columns: 1fr;
 }
 
+/* ── Tools/skills list in the About section ── */
+.about-tools {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.about-tools li {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  color: #fefef9;
+}
+
+/* ── Highlight card inner grid spacing ── */
 .highlight-card {
   display: grid;
   gap: 10px;
 }
 
+/* ── Secondary/muted text color (e.g. role label on case cards) ── */
 .muted {
   color: #fefef9;
   margin: 6px 0 0;
 }
 
+/* Footer */
 .footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
-  color: #fefef9;
-  font-size: 0.95rem;
+  color: #FB3539;
+  font-size: 13px;
 }
 
 @media (max-width: 900px) {
