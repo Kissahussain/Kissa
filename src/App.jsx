@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import { MdEmail } from 'react-icons/md';
+import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
 
 const navLinks = [
   { label: 'About Me', href: '#about' },
@@ -8,18 +10,20 @@ const navLinks = [
 ];
 
 const socials = [
-  { label: 'Email', href: 'mailto:hello@example.com', icon: '✉️' },
-  { label: 'GitHub', href: 'https://github.com/Kissahussain', icon: '🐙' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/username', icon: '🔗' },
-  { label: 'Medium', href: 'https://medium.com/@username', icon: '✍️' }
+  { label: 'Email', href: 'mailto:hello@example.com', icon: <MdEmail /> },
+  { label: 'GitHub', href: 'https://github.com/Kissahussain', icon: <FaGithub /> },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/username', icon: <FaLinkedin /> },
+  { label: 'Medium', href: 'https://medium.com/@username', icon: <FaMedium /> }
 ];
 
 const caseStudies = [
   {
-    title: 'EcoEats',
-    role: 'Branding · 2024',
-    description: 'Designing a sustainable experience to reduce food waste with purposeful product flows.',
-    url: 'https://www.figma.com/proto/UyhJAAvEywqWNcCjwXBJ5O/EcoEats?node-id=230-2'
+  
+  title: 'EcoEats',
+  role: 'Design Lead',
+  description: 'Led design on a deployed team app that helps households track expiring groceries and cut food waste.',
+  liveUrl: 'https://your-deployed-app-url.com',
+  figmaUrl: 'https://www.figma.com/proto/UyhJAAvEywqWNcCjwXBJ5O/EcoEats?node-id=230-2',
   },
   {
     title: 'Creative System',
@@ -56,7 +60,7 @@ function Nav() {
       <div className="socials">
         {socials.map(item => (
           <a key={item.label} href={item.href} target="_blank" rel="noreferrer" aria-label={item.label}>
-            <span>{item.icon}</span>
+            {item.icon}
           </a>
         ))}
       </div>
