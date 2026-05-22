@@ -103,13 +103,6 @@ textarea {
   margin-bottom: 14px;
 }
 
-/* ── Section headings (Experience, Case Studies) ── */
-.section-block h2 {
-  /*'font-size: clamp(2.3rem, 2.7vw, 3.6rem);*/
-  line-height: 1.3;
-  padding: 10vh;
-}
-
 /* ── Hero h1 — matches About Me left alignment, no extra padding ── */
 .hero-section h1 {
   font-size: clamp(2.3rem, 4vw, 4rem);
@@ -132,8 +125,7 @@ textarea {
 
 /*Body text color for about*/
 
-.hero-intro,
-.about-section p{
+.about-section p {
   color: #fafafa;
   font-size: 18px;
 }
@@ -148,8 +140,7 @@ textarea {
 }
 
 /* ── Shared shape and padding for both button styles ── */
-.button,
-.button-outline {
+.button {
   padding: 14px 22px;
   border-radius: 999px;
   font-weight: 600;
@@ -161,107 +152,6 @@ textarea {
   color: #FB3539;
 }
 
-
-/* ── Centers the hero panel card on the right side ── */
-.hero-panel {
-  display: grid;
-  place-items: center;
-}
-
-/* ── White gradient card used in hero panel ── */
-.panel-card {
-  background: linear-gradient(180deg, #fff 0%, #eef1f8 100%);
-  border: 1px solid #e7e8ed;
-  border-radius: 28px;
-  padding: 30px;
-  width: 100%;
-  min-height: 260px;
-}
-
-/* ── Small label text inside the panel card ── */
-.panel-label {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: #fbfbf4;
-}
-
-/* ── Shared white card style used across the page ── */
-
-/* ── Card body text — dark so it's readable on the white card background ── */
-.card p,
-.case-card p,
-.panel-card p {
-  color: #333;
-  font-size: 15px;
-}
-
-.card,
-.case-card,
-.highlight-card {
-  border-radius: 22px;
-  background: #fff;
-  border: 1px solid #e5e6ec;
-  padding: 24px;
-}
-
-/* ── Flip card container — sets up 3D perspective ── */
-.card-flip {
-  position: relative;
-  min-height: 220px;
-  perspective: 1000px;
-  background: transparent;
-  border: none;
-  padding: 0;
-}
-
-/* ── Inner wrapper that actually rotates on hover ── */
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-}
-
-/* ── Triggers the flip animation when hovering the card ── */
-.card-flip:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-/* ── Shared styles for both sides of the flip card ── */
-.card-front,
-.card-back {
-  position: absolute;
-  inset: 0;
-  padding: 32px;
-  border-radius: 22px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* ── Front face of the flip card ── */
-.card-front {
-  background: #fff;
-  border: 1px solid #e5e6ec;
-}
-
-/* ── Back face of the flip card — change background color here ── */
-.card-back {
-  background: #ff0000;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  transform: rotateY(180deg);
-}
-
-/* ── Text inside the back of the flip card ── */
-.card-back p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.6;
-}
 
 /* ── Bottom margin between page sections ── */
 .section-block {
@@ -281,13 +171,6 @@ textarea {
   border-radius: 28px;
   padding: 36px;
   box-sizing: border-box;
-}
-
-/* ── Grid layout shared by case study grid and about highlights ── */
-.case-grid,
-.about-highlights {
-  display: grid;
-  gap: 18px;
 }
 
 /* ── Two-column layout: company list on left, details on right ── */
@@ -522,11 +405,6 @@ textarea {
   align-items: start;
 }
 
-/* Single-column stack for highlight cards */
-.about-highlights {
-  grid-template-columns: 1fr;
-}
-
 /*Tools/skills list in the About section */
 .about-tools {
   list-style: none;
@@ -544,12 +422,6 @@ textarea {
   padding: 6px 16px;
   font-size: 0.85rem;
   color: #fefef9;
-}
-
-/*Highlight card inner grid spacing */
-.highlight-card {
-  display: grid;
-  gap: 10px;
 }
 
 /* role label on case cards */
