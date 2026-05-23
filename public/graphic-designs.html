@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Graphic Designs — Kissa Hussain</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; cursor: url('/star.svg') 10 10, auto; }
 
     body {
       font-family: 'Inter', sans-serif;
       background: url('/mymind-wHJ5L9KGTl4-unsplash.jpg') center center / cover no-repeat fixed;
-      color: #ffffff;
+      color: #f5f0e8;
       min-height: 100vh;
       padding: 48px 24px;
     }
+
+    a { color: inherit; text-decoration: none; }
 
     header {
       display: flex;
@@ -27,14 +29,12 @@
       font-weight: 700;
       font-size: 22px;
       letter-spacing: -0.03em;
-      text-decoration: none;
       color: #fefef9;
     }
 
     .back-link {
       font-size: 13px;
-      color: #ffffff;
-      text-decoration: none;
+      color: #F2CCB4;
       transition: color 0.2s;
     }
 
@@ -49,12 +49,12 @@
     .page-title h1 {
       font-size: clamp(2rem, 5vw, 3.5rem);
       line-height: 1.15;
-      color: #ffffff;
+      color: #F2CCB4;
     }
 
     .page-title p {
       margin-top: 14px;
-      color: #ffffff;
+      color: #fefef9;
       font-size: 1rem;
       opacity: 0.7;
     }
@@ -66,10 +66,11 @@
       margin: 32px auto 48px;
     }
 
+    /* upload button — hidden until Shift+K */
     .upload-area {
       max-width: 1100px;
       margin: 0 auto 40px;
-      display: flex;
+      display: none;
       justify-content: center;
     }
 
@@ -86,7 +87,6 @@
       color: #fefef9;
       font-size: 0.95rem;
       font-weight: 600;
-      cursor: pointer;
       transition: background 0.2s, border-color 0.2s;
     }
 
@@ -95,11 +95,7 @@
       border-color: rgba(255, 255, 255, 0.6);
     }
 
-    .upload-btn .plus {
-      font-size: 1.5rem;
-      line-height: 1;
-      color: #F2CCB4;
-    }
+    .upload-btn .plus { font-size: 1.5rem; color: #F2CCB4; line-height: 1; }
 
     .gallery {
       max-width: 1100px;
@@ -124,9 +120,7 @@
       transition: transform 0.4s ease;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.03);
-    }
+    .gallery-item:hover img { transform: scale(1.03); }
 
     .remove-btn {
       position: absolute;
@@ -139,32 +133,14 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
       font-size: 1.1rem;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       opacity: 0;
       transition: opacity 0.2s;
     }
 
-    .gallery-item:hover .remove-btn {
-      opacity: 1;
-    }
-
-    .empty-state {
-      text-align: center;
-      color: rgba(255, 255, 255, 0.35);
-      padding: 80px 24px;
-      border: 2px dashed rgba(255, 255, 255, 0.12);
-      border-radius: 16px;
-      max-width: 500px;
-      margin: 0 auto;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .empty-state p { font-size: 0.95rem; line-height: 1.8; }
+    .gallery-item:hover .remove-btn { opacity: 1; }
 
     footer {
       text-align: center;
@@ -187,24 +163,29 @@
   </div>
   <div class="divider"></div>
 
-  <div class="upload-area" id="upload-area" style="display:none">
+  <div class="upload-area" id="upload-area">
     <label class="upload-btn">
       <span class="plus">+</span> Add Images
       <input type="file" id="file-input" multiple accept="image/*" style="display:none" />
     </label>
   </div>
 
-  <main class="gallery" id="gallery">
-    <div class="empty-state" id="empty-state">
-      <p>Click <strong>+ Add Images</strong> to upload your work.<br />Images are saved in your browser automatically.</p>
-    </div>
-  </main>
+  <main class="gallery" id="gallery"></main>
 
   <footer>
     <p>© 2026 Kissa Hussain</p>
   </footer>
 
   <script>
+    // ── Hardcoded images (visible to everyone) ──
+    const IMAGES = [
+      '1.png','2.png','3.png','6.png','7.png','8.png','9.png','10.png',
+      '11.png','12.png','13.png','14.png','15.png','16.png','18.png','19.png',
+      '20.png','21.png','22.png','23.png','24.png','25.png','26.png','27.png',
+      '28.png','29.png','30.png',
+    ];
+
+    // ── IndexedDB for private uploads (Shift+K admin mode) ──
     const DB_NAME = 'kh-graphic-designs';
     const STORE   = 'images';
     let db;
@@ -212,9 +193,7 @@
     function openDB() {
       return new Promise((resolve, reject) => {
         const req = indexedDB.open(DB_NAME, 1);
-        req.onupgradeneeded = e => {
-          e.target.result.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
-        };
+        req.onupgradeneeded = e => e.target.result.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
         req.onsuccess = e => resolve(e.target.result);
         req.onerror   = e => reject(e);
       });
@@ -222,8 +201,7 @@
 
     function saveImage(dataUrl, name) {
       return new Promise((resolve, reject) => {
-        const tx  = db.transaction(STORE, 'readwrite');
-        const req = tx.objectStore(STORE).add({ dataUrl, name });
+        const req = db.transaction(STORE, 'readwrite').objectStore(STORE).add({ dataUrl, name });
         req.onsuccess = () => resolve(req.result);
         req.onerror   = e => reject(e);
       });
@@ -240,8 +218,7 @@
 
     function getAllImages() {
       return new Promise((resolve, reject) => {
-        const tx  = db.transaction(STORE, 'readonly');
-        const req = tx.objectStore(STORE).getAll();
+        const req = db.transaction(STORE, 'readonly').objectStore(STORE).getAll();
         req.onsuccess = () => resolve(req.result);
         req.onerror   = e => reject(e);
       });
@@ -256,84 +233,69 @@
       });
     }
 
-    const UNLOCKED_KEY = 'kh-admin';
-
-    function isUnlocked() {
-      return sessionStorage.getItem(UNLOCKED_KEY) === '1';
-    }
+    // ── Admin mode ──
+    const ADMIN_KEY = 'kh-admin';
+    const isAdmin   = () => sessionStorage.getItem(ADMIN_KEY) === '1';
 
     function applyAdminMode() {
-      const show = isUnlocked();
+      const show = isAdmin();
       document.getElementById('upload-area').style.display = show ? 'flex' : 'none';
-      document.querySelectorAll('.remove-btn').forEach(btn => {
-        btn.style.display = show ? '' : 'none';
-      });
+      document.querySelectorAll('.remove-btn').forEach(btn => btn.style.display = show ? 'flex' : 'none');
     }
 
     document.addEventListener('keydown', e => {
       if (e.shiftKey && e.key === 'K') {
-        const next = isUnlocked() ? '0' : '1';
-        sessionStorage.setItem(UNLOCKED_KEY, next);
+        sessionStorage.setItem(ADMIN_KEY, isAdmin() ? '0' : '1');
         applyAdminMode();
       }
     });
 
-    function removeEmptyState() {
-      const el = document.getElementById('empty-state');
-      if (el) el.remove();
+    // ── Render helpers ──
+    const gallery = document.getElementById('gallery');
+
+    function addStaticImage(filename) {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      const img = document.createElement('img');
+      img.src = '/' + filename;
+      img.alt = filename;
+      item.appendChild(img);
+      gallery.appendChild(item);
     }
 
-    function showEmptyState() {
-      const gallery = document.getElementById('gallery');
-      if (document.getElementById('empty-state')) return;
-      const div = document.createElement('div');
-      div.id        = 'empty-state';
-      div.className = 'empty-state';
-      div.innerHTML = '<p>Click <strong>+ Add Images</strong> to upload your work.<br />Images are saved in your browser automatically.</p>';
-      gallery.appendChild(div);
-    }
-
-    function addImageToDOM(id, dataUrl, name) {
-      removeEmptyState();
-
-      const gallery = document.getElementById('gallery');
-      const item    = document.createElement('div');
-      item.className  = 'gallery-item';
-      item.dataset.id = id;
-
+    function addUploadedImage(id, dataUrl, name) {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
       const img = document.createElement('img');
       img.src = dataUrl;
       img.alt = name;
-
       const btn = document.createElement('button');
       btn.className = 'remove-btn';
-      btn.title     = 'Remove';
       btn.textContent = '×';
-      btn.onclick = async () => {
-        await deleteImage(id);
-        item.remove();
-        if (!document.querySelector('.gallery-item')) showEmptyState();
-      };
-
-      if (!isUnlocked()) btn.style.display = 'none';
+      btn.title = 'Remove';
+      btn.style.display = isAdmin() ? 'flex' : 'none';
+      btn.onclick = async () => { await deleteImage(id); item.remove(); };
       item.appendChild(img);
       item.appendChild(btn);
       gallery.appendChild(item);
     }
 
     async function init() {
+      // render hardcoded images first
+      IMAGES.forEach(addStaticImage);
+
+      // load private uploads from IndexedDB
       db = await openDB();
+      const saved = await getAllImages();
+      saved.forEach(({ id, dataUrl, name }) => addUploadedImage(id, dataUrl, name));
 
       applyAdminMode();
-      const saved = await getAllImages();
-      saved.forEach(({ id, dataUrl, name }) => addImageToDOM(id, dataUrl, name));
 
       document.getElementById('file-input').addEventListener('change', async e => {
-        const files = Array.from(e.target.files);
-        for (const file of files) {
+        for (const file of Array.from(e.target.files)) {
           const dataUrl = await readFile(file);
           const id      = await saveImage(dataUrl, file.name);
-          addImageToDOM(id, dataUrl, file.name);
+          addUploadedImage(id, dataUrl, file.name);
         }
         e.target.value = '';
       });
