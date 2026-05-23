@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graphic Designs — Kissa Hussain</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url('/mymind-wHJ5L9KGTl4-unsplash.jpg') center center / cover no-repeat fixed;
+      color: #ffffff;
+      min-height: 100vh;
+      padding: 48px 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto 64px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      color: #fefef9;
+    }
+
+    .back-link {
+      font-size: 13px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: #fefef9; }
+
+    .page-title {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    .page-title h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      color: #ffffff;
+    }
+
+    .page-title p {
+      margin-top: 14px;
+      color: #ffffff;
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: #0145c3;
+      margin: 32px auto 48px;
+    }
+
+    .upload-area {
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .upload-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 2px dashed rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 999px;
+      padding: 14px 32px;
+      color: #fefef9;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .upload-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .upload-btn .plus {
+      font-size: 1.5rem;
+      line-height: 1;
+      color: #F2CCB4;
+    }
+
+    .gallery {
+      max-width: 1100px;
+      margin: 0 auto;
+      columns: 3 260px;
+      column-gap: 16px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .gallery-item:hover .remove-btn {
+      opacity: 1;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.35);
+      padding: 80px 24px;
+      border: 2px dashed rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      max-width: 500px;
+      margin: 0 auto;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .empty-state p { font-size: 0.95rem; line-height: 1.8; }
+
+    footer {
+      text-align: center;
+      margin-top: 96px;
+      color: #FB3539;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="brand" href="/">KH</a>
+    <a class="back-link" href="/#case-studies">← Back to portfolio</a>
+  </header>
+
+  <div class="page-title">
+    <h1>Graphic Designs</h1>
+    <p>A collection of visual work across illustration, branding, and editorial design.</p>
+  </div>
+  <div class="divider"></div>
+
+  <div class="upload-area" id="upload-area" style="display:none">
+    <label class="upload-btn">
+      <span class="plus">+</span> Add Images
+      <input type="file" id="file-input" multiple accept="image/*" style="display:none" />
+    </label>
+  </div>
+
+  <main class="gallery" id="gallery">
+    <div class="empty-state" id="empty-state">
+      <p>Click <strong>+ Add Images</strong> to upload your work.<br />Images are saved in your browser automatically.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Kissa Hussain</p>
+  </footer>
+
+  <script>
+    const DB_NAME = 'kh-graphic-designs';
+    const STORE   = 'images';
+    let db;
+
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = e => {
+          e.target.result.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
+        };
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e);
+      });
+    }
+
+    function saveImage(dataUrl, name) {
+      return new Promise((resolve, reject) => {
+        const tx  = db.transaction(STORE, 'readwrite');
+        const req = tx.objectStore(STORE).add({ dataUrl, name });
+        req.onsuccess = () => resolve(req.result);
+        req.onerror   = e => reject(e);
+      });
+    }
+
+    function deleteImage(id) {
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE, 'readwrite');
+        tx.objectStore(STORE).delete(id);
+        tx.oncomplete = resolve;
+        tx.onerror    = reject;
+      });
+    }
+
+    function getAllImages() {
+      return new Promise((resolve, reject) => {
+        const tx  = db.transaction(STORE, 'readonly');
+        const req = tx.objectStore(STORE).getAll();
+        req.onsuccess = () => resolve(req.result);
+        req.onerror   = e => reject(e);
+      });
+    }
+
+    function readFile(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = e => resolve(e.target.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    const UNLOCKED_KEY = 'kh-admin';
+
+    function isUnlocked() {
+      return sessionStorage.getItem(UNLOCKED_KEY) === '1';
+    }
+
+    function applyAdminMode() {
+      const show = isUnlocked();
+      document.getElementById('upload-area').style.display = show ? 'flex' : 'none';
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.style.display = show ? '' : 'none';
+      });
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.shiftKey && e.key === 'K') {
+        const next = isUnlocked() ? '0' : '1';
+        sessionStorage.setItem(UNLOCKED_KEY, next);
+        applyAdminMode();
+      }
+    });
+
+    function removeEmptyState() {
+      const el = document.getElementById('empty-state');
+      if (el) el.remove();
+    }
+
+    function showEmptyState() {
+      const gallery = document.getElementById('gallery');
+      if (document.getElementById('empty-state')) return;
+      const div = document.createElement('div');
+      div.id        = 'empty-state';
+      div.className = 'empty-state';
+      div.innerHTML = '<p>Click <strong>+ Add Images</strong> to upload your work.<br />Images are saved in your browser automatically.</p>';
+      gallery.appendChild(div);
+    }
+
+    function addImageToDOM(id, dataUrl, name) {
+      removeEmptyState();
+
+      const gallery = document.getElementById('gallery');
+      const item    = document.createElement('div');
+      item.className  = 'gallery-item';
+      item.dataset.id = id;
+
+      const img = document.createElement('img');
+      img.src = dataUrl;
+      img.alt = name;
+
+      const btn = document.createElement('button');
+      btn.className = 'remove-btn';
+      btn.title     = 'Remove';
+      btn.textContent = '×';
+      btn.onclick = async () => {
+        await deleteImage(id);
+        item.remove();
+        if (!document.querySelector('.gallery-item')) showEmptyState();
+      };
+
+      if (!isUnlocked()) btn.style.display = 'none';
+      item.appendChild(img);
+      item.appendChild(btn);
+      gallery.appendChild(item);
+    }
+
+    async function init() {
+      db = await openDB();
+
+      applyAdminMode();
+      const saved = await getAllImages();
+      saved.forEach(({ id, dataUrl, name }) => addImageToDOM(id, dataUrl, name));
+
+      document.getElementById('file-input').addEventListener('change', async e => {
+        const files = Array.from(e.target.files);
+        for (const file of files) {
+          const dataUrl = await readFile(file);
+          const id      = await saveImage(dataUrl, file.name);
+          addImageToDOM(id, dataUrl, file.name);
+        }
+        e.target.value = '';
+      });
+    }
+
+    init();
+  </script>
+
+</body>
+</html>

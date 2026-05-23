@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
 const navLinks = [
   { label: 'About Me', href: '#about' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Case Studies', href: '#case-studies' },
+  { label: 'Projects', href: '#case-studies' },
   { label: 'Art Website', href: 'https://eastndwest.com', external: true }
 ];
 
@@ -19,24 +19,28 @@ const socials = [
 const caseStudies = [
   {
     title: 'EcoEats',
-    role: 'Design Lead',
-    description: 'Led design on a deployed team app that helps households track expiring groceries and cut food waste.',
-    url: 'https://www.figma.com/proto/UyhJAAvEywqWNcCjwXBJ5O/EcoEats?node-id=230-2',
-    accent: '#2D9B5A',
+    role: 'Front-end Developer, UI/UX Researcher',
+    description: 'An AI-powered app that helps students find creative ways to use leftover food, promoting both sustainability and financial savings.',
+    note: 'Case study in progress — in the meantime, enjoy the web app!',
+    url: 'https://ecoeats-hci.web.app/',
+    accent: '#F2CCB4',
+    logo: '/Ecoeats logo.png',
   },
   {
-    title: 'Creative System',
-    role: 'UI Design · 2024',
-    description: 'Building a visual system that scales across editorial, web, and motion projects.',
-    url: '#',
+    title: 'Print Workshop',
+    role: 'Workshop Curator · 2025',
+    description: 'Hosted a community-driven workshop on print design and techniques.',
+    url: 'https://eastndwest.com/blogs/news/print-workshop',
+    accent: '#F5955E',
+    logo: '/East & West.png',
+  },
+  {
+    title: 'Graphic Designs',
+    role: 'Multimedia Art',
+    description: 'Created a series of graphic designs for social media and print, using Adobe Illustrator and Canva tools.',
+    url: '/graphic-designs.html',
     accent: '#FB3539',
-  },
-  {
-    title: 'Art Direction',
-    role: 'Illustration · 2023',
-    description: 'Developing concept-driven art direction for lifestyle and cultural brands.',
-    url: '#',
-    accent: '#0145c3',
+    logoText: 'Designs',
   }
 ];
 
@@ -73,10 +77,14 @@ function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-copy">
-        <h1>Hi, I'm <span className="name-highlight">Kissa!</span> A product designer and artist in Texas.</h1>
+        <h1>Hi, I'm <span className="name-highlight">Kissa!</span><br />A product designer and<br />artist in Texas.</h1>
         <div className="hero-actions">
-          <a className="button" href="#case-studies">Case Studies</a>
+          <a className="button" href="#case-studies">Projects</a>
         </div>
+      </div>
+      <div className="hero-photos">
+        <img className="hero-photo hero-photo--back" src="/IMG_1195.jpeg" alt="Kissa" />
+        <img className="hero-photo hero-photo--front" src="/IMG_1362.jpeg" alt="Kissa" />
       </div>
     </section>
   );
@@ -180,12 +188,15 @@ function CaseStudies() {
               onClick={() => { setPaused(true); setActive(i); }}
             >
               <div className="case-slide-logo" style={{ background: study.accent }}>
-                <span>{study.title[0]}</span>
+                {study.logo
+                  ? <img src={study.logo} alt={study.title} style={{ width: '82%', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+                  : <span className={study.logoText ? 'logo-text' : ''}>{study.logoText ?? study.title[0]}</span>}
               </div>
               <div className="case-slide-text">
                 <p className="muted">{study.role}</p>
                 <h3>{study.title}</h3>
                 <p>{study.description}</p>
+                {study.note && <p className="case-note">{study.note}</p>}
                 <a href={study.url} className="case-link" target="_blank" rel="noreferrer">View project →</a>
               </div>
             </div>
@@ -206,7 +217,6 @@ function About() {
     <section id="about" className="section-block about-section">
       <div>
         <p className="section-label">About Me</p>
-        <h1></h1>
         <p>
           I'm currently working on a new case study while I work part-time at Apple as a Technical Specialist, where I
           get to help people with common problems they have on their iPhones. It's the most inspirational place to work
@@ -216,13 +226,12 @@ function About() {
         <ul className="about-tools">
           <li>React.js</li>
           <li>Figma</li>
-           <li>Adobe Illustrator</li>
+          <li>Adobe Illustrator</li>
           <li>Instagram and TikTok</li>
         </ul>
         <p>
           In my free time, I'm either bouldering, inventing new recipes, or working on my business. Oh, I make content too.
         </p>
-      
       </div>
     </section>
   );
@@ -232,7 +241,7 @@ function Footer() {
   return (
     <footer className="footer">
       <p>© 2026 Kissa Hussain</p>
-      <p>Designed and handcoded in Houston, TX with ❤️</p>
+      <p>Designed and handcoded with Claude Code ❤️</p>
     </footer>
   );
 }
