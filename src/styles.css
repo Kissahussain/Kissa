@@ -508,9 +508,18 @@ textarea {
     width: 170px;
     height: 220px;
   }
+
+  #experience {
+    max-width: 100%;
+    padding: 24px 20px;
+  }
 }
 
 @media (max-width: 640px) {
+  body {
+    padding: 0;
+  }
+
   .page-wrapper {
     padding: 18px 16px 32px;
   }
@@ -523,5 +532,84 @@ textarea {
   .nav-links,
   .socials {
     justify-content: center;
+  }
+
+  /* Hero: shrink photos on mobile */
+  .hero-photos {
+    width: 180px;
+    height: 230px;
+  }
+
+  .hero-photo {
+    width: 140px;
+    height: 185px;
+  }
+
+  /* Experience: switch sidebar to horizontal scrollable tabs */
+  .experience-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-sidebar {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    border-left: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .experience-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .experience-tab {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    margin-left: 0;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+
+  .experience-tab.active {
+    border-left-color: transparent;
+    border-bottom-color: #004cd8;
+  }
+
+  .experience-detail {
+    padding: 20px 0 0;
+  }
+
+  /* Projects: clip overflow so side cards don't cause horizontal scroll */
+  #case-studies {
+    overflow: hidden;
+  }
+
+  .case-stack {
+    height: 420px;
+  }
+
+  .case-slide {
+    width: 280px;
+    height: 400px;
+  }
+
+  .case-slide.is-next {
+    transform: translateX(calc(-50% + 210px)) scale(0.82);
+  }
+
+  .case-slide.is-next:hover {
+    transform: translateX(calc(-50% + 190px)) scale(0.86);
+  }
+
+  .case-slide.is-prev {
+    transform: translateX(calc(-50% - 210px)) scale(0.82);
+  }
+
+  .case-slide.is-prev:hover {
+    transform: translateX(calc(-50% - 190px)) scale(0.86);
   }
 }

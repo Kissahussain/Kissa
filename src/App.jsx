@@ -120,6 +120,22 @@ function Experience() {
           'Designed social and print content using Canva and Adobe Creative Suite.',
           'Drove significant follower growth in a single semester and boosting student event attendance for the Muslim Student Association.',
         ]
+      },
+      {
+        role: 'Operations Area Manager Intern',
+        company: 'Amazon',
+        period: 'JUN 2022 – AUG 2022',
+        bullets: [
+          'Designed a two-part onboarding project using AutoCAD, including a visual flow map and structured presentation, simplifying interdepartmental processes for incoming leaders across the fulfillment center.',
+        ]
+      },
+      {
+        role: 'Leadership Development Intern',
+        company: 'RippleMatch',
+        period: 'DEC 2021 – MAY 2022',
+        bullets: [
+          'Designed on-brand flyers and email campaigns to drive campus engagement across student organizations.',
+        ]
       }
     ],
     []
