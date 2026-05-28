@@ -225,9 +225,10 @@ function About() {
         <p>Here are some tech and tools I'm great at:</p>
         <ul className="about-tools">
           <li>React.js</li>
+          <li>JavaScript</li>
+          <li>HTML/CSS</li>
           <li>Figma</li>
-          <li>Adobe Illustrator</li>
-          <li>Instagram and TikTok</li>
+          <li>Adobe Creative Suite</li>
         </ul>
         <p>
           In my free time, I'm either bouldering, inventing new recipes, or working on my business. Oh, I make content too.
