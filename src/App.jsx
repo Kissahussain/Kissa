@@ -98,9 +98,9 @@ function Experience() {
         company: 'East & West',
         period: 'OCT 2025 – PRESENTT',
         bullets: [
-          'Launched and scaled a personal brand as an oil painter, designing multi-medium content using Canva, Adobe Creative Suite, and CapCut to grow an engaged social media audience.',
+          'Launched and scaled a personal brand as an oil painter, designing multi medium content using Canva, Adobe Creative Suite, and CapCut to grow an engaged social media audience.',
           'Secured two commission pieces within the first three months of launch, demonstrating strong client acquisition and brand credibility.',
-          'Curated a small-group art workshop, teaching techniques including stamp work to foster creativity and community.t campaigns.',
+          'Curated a small-group art workshop, teaching techniques including stamp work to foster creativity and community campaigns.',
         ]
       },
       {
